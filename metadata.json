@@ -1,0 +1,6 @@
+{
+  "name": "FarmaTest Chile",
+  "description": "Preparador inteligente para el Examen de Competencias de Auxiliar de Farmacia de la SEREMI de Salud de Chile, con simulacros contrarreloj, análisis de brechas y gamificación.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

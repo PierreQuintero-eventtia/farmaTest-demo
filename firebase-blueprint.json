@@ -1,0 +1,88 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Perfil y estado gamificado del postulante a Auxiliar de Farmacia en Chile",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "region": { "type": "string" },
+        "role": { "type": "string" },
+        "isPro": { "type": "boolean" },
+        "onboardingCompleted": { "type": "boolean" },
+        "preTestScore": { "type": "number" },
+        "streak": {
+          "type": "object",
+          "properties": {
+            "count": { "type": "number" },
+            "extendedToday": { "type": "boolean" },
+            "freezesEquipped": { "type": "number" },
+            "lastCompletedDate": { "type": "string" }
+          }
+        },
+        "health": {
+          "type": "object",
+          "properties": {
+            "currentHearts": { "type": "number" },
+            "maxHearts": { "type": "number" },
+            "nextRefillTimestamp": { "type": "number" }
+          }
+        },
+        "inventory": {
+          "type": "object",
+          "properties": {
+            "gems": { "type": "number" },
+            "lingots": { "type": "number" },
+            "activeBoosters": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "type": { "type": "string" },
+                  "expiresAt": { "type": "number" }
+                }
+              }
+            }
+          }
+        },
+        "unlockedBadges": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "fcmToken": { "type": "string" },
+        "studySchedule": { "type": "object" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "email", "name"]
+    },
+    "SimulacroAttempt": {
+      "title": "SimulacroAttempt",
+      "description": "Historial de intentos de simulacros oficiales SEREMI",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "puntajePorcentaje": { "type": "number" },
+        "aprobado": { "type": "boolean" },
+        "correctas": { "type": "number" },
+        "incorrectas": { "type": "number" },
+        "omitidas": { "type": "number" },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["id", "userId", "puntajePorcentaje", "aprobado"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Documento de perfil del usuario autenticado"
+    },
+    "/users/{userId}/simulacros/{simulacroId}": {
+      "schema": "SimulacroAttempt",
+      "description": "Colección de intentos de simulacros por usuario"
+    }
+  }
+}
